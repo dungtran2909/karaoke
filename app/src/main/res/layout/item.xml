@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/vien"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/txtMa"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/vien2"
+            android:text="55555"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="24dp"
+            android:gravity="center"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+
+            <TextView
+                android:id="@+id/txtTen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Ten bai hat"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCaSi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Casi"
+                android:textStyle="italic" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnLike"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/vien2"
+                    app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    
+</LinearLayout>

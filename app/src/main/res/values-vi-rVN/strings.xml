@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">karaoke</string>
+    <string name="title_activity_drawer">Drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nava_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="list">Danh sách bài hát</string>
+    <string name="like_list">Danh sách bài hát yêu thích</string>
+    <string name="sing_list">Danh sách bài hát trực tuyến</string>
+    <string name="note_null">Không tìm thấy bài hát</string>
+
+    <string name="add_list">Đã lưu vào danh sách thích</string>
+    <string name="remove_list">Đã xóa khỏi danh sách thích</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="share_link">Chia sẻ/Đánh giá</string>
+    <string name="search_map">Tìm kiếm quanh đây</string>
+    <string name="account">Tài khoản</string>
+    <string name="title_login">Đăng nhập</string>
+    <string name="title_to">vào</string>
+    <string name="title_youraccount">Tài Khoản Của Bạn</string>
+    <string name="login_account">Nhập tài khoản</string>
+    <string name="login_password">Nhập mật khẩu</string>
+    <string name="login_register">ĐĂNG KÝ</string>
+    <string name="login_signin">ĐĂNG NHẬP</string>
+
+</resources>

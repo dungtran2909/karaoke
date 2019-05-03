@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/icon_language"
+            android:title="@string/language"/>
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/icon_map"
+            android:title="Tìm quanh đây" />
+        <item
+            android:id="@+id/nav_cmt"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/share_link" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group>
+
+    <item android:title="@string/account">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/icon_user"
+                android:title="Đăng nhập"
+                android:visible="true"/>
+            <item
+                android:id="@+id/nav_signout"
+                android:icon="@drawable/icon_signout"
+                android:title="Đăng xuất"
+                android:visible="false"/>
+
+
+        </menu>
+    </item>
+
+
+</menu>
