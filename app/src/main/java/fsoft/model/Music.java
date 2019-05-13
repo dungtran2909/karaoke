@@ -16,8 +16,11 @@ public class Music {
     private  String ten;
     //@SerializedName("caSi")
     private  String caSi;
+
+    private String loiBH;
     //@SerializedName("thich")
     private  boolean thich;
+
 
     @Override
     public String toString() {
@@ -53,6 +56,14 @@ public class Music {
         this.caSi = caSi;
     }
 
+    public String getLoiBH() {
+        return loiBH;
+    }
+
+    public void setLoiBH(String loiBH) {
+        this.loiBH = loiBH;
+    }
+
     public boolean isThich() {
         return thich;
     }
@@ -61,15 +72,14 @@ public class Music {
         this.thich = thich;
     }
 
-    public Music() {
-
-    }
-
-    public Music(String ma, String ten, String caSi, boolean thich) {
-
+    public Music(String ma, String ten, String caSi, String loiBH, boolean thich) {
         this.ma = ma;
         this.ten = ten;
         this.caSi = caSi;
+        this.loiBH = loiBH;
         this.thich = thich;
+    }
+
+    public Music() {
     }
 }

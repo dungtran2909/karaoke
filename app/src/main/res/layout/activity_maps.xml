@@ -22,13 +22,13 @@
         android:layout_marginLeft="10dp"/>
 
     <Button
-        android:id="@+id/btnRestaurant"
+        android:id="@+id/btnKaraoke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="47dp"
         android:layout_marginEnd="54dp"
-        android:text="Restaurant" />
+        android:text="Karaoke" />
 
 </RelativeLayout>

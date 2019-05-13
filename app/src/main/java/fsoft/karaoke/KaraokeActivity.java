@@ -1,12 +1,10 @@
 package fsoft.karaoke;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,24 +17,15 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowInsets;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -63,10 +52,12 @@ import fsoft.adapter.SingAdapter;
 import fsoft.model.Music;
 import fsoft.model.Sing;
 
-public class DrawerActivity extends AppCompatActivity
+public class KaraokeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     MenuItem menu_info,nav_login;
+
+    TextView txtSoDT;
 
     TabHost tabHost;
 
@@ -103,7 +94,7 @@ public class DrawerActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
+        setContentView(R.layout.activity_karaoke);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -160,10 +151,10 @@ public class DrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_language) {
-            Intent intent = new Intent(DrawerActivity.this, LanguageActivity.class);
+            Intent intent = new Intent(KaraokeActivity.this, LanguageActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_map) {
-            Intent intent = new Intent(DrawerActivity.this, MapsActivity.class);
+            Intent intent = new Intent(KaraokeActivity.this, MapsActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_cmt) {
@@ -171,7 +162,7 @@ public class DrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_login) {
-            Intent intent = new Intent(DrawerActivity.this, RegisterActivity.class);
+            Intent intent = new Intent(KaraokeActivity.this, RegisterActivity.class);
             startActivity(intent);
 
         }else if(id==R.id.nav_signout){
@@ -184,7 +175,7 @@ public class DrawerActivity extends AppCompatActivity
     }
 
     public void showDialog(){
-        dialog = new Dialog(DrawerActivity.this);
+        dialog = new Dialog(KaraokeActivity.this);
         dialog.setTitle("KARAOKE");
         dialog.setContentView(R.layout.dialog_signout);
         dialog.show();
@@ -209,50 +200,6 @@ public class DrawerActivity extends AppCompatActivity
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_item_search,menu);
-//
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    boolean visible;
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        switch (item.getItemId()) {
-//
-//            case R.id.menu_search:
-//                visible =! visible;
-//                it_search.setVisibility(visible ? View.VISIBLE:View.GONE);
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_app, menu);
-//
-//        SearchView searchView = (SearchView) menu.findItem(R.id.menuSearch).getActionView();
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String st) {
-//                Toast.makeText(MainActivity.this, st, Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                Log.d("AAAA", s);
-//                return false;
-//            }
-//        });
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
 
     private void GetJsonYouTube(String url) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -291,7 +238,7 @@ public class DrawerActivity extends AppCompatActivity
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(DrawerActivity.this, "Loi", Toast.LENGTH_LONG).show();
+                        Toast.makeText(KaraokeActivity.this, "Loi", Toast.LENGTH_LONG).show();
                     }
                 }
         );
@@ -373,22 +320,26 @@ public class DrawerActivity extends AppCompatActivity
                 xuLyTimBaiHatTheoTen(edtSearch.getText().toString());
             }
         });
+
+        txtSoDT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String so = txtSoDT.getText().toString();
+                if(!TextUtils.isEmpty(so)){
+                    String dial = "tel:"+so;
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
+                }else {
+                    Toast.makeText(KaraokeActivity.this, "", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
-
-    /*private void xuLyTimRealTime(String text) {
-        String textFortmat=xuLyDataNhapVao(text.toUpperCase());
-        xuLyTimRealTime(textFortmat);
-        for(String s : dsMaBH){
-            timBaiHat(s);
-        }
-    }*/
-
 
     private void xuLySing() {
         lvSing.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(DrawerActivity.this, PlayVideoActivity.class);
+                Intent intent = new Intent(KaraokeActivity.this, PlayVideoActivity.class);
                 intent.putExtra("idVideoSing", arrSing.get(i).getIdVideo());
                 startActivity(intent);
             }
@@ -403,12 +354,14 @@ public class DrawerActivity extends AppCompatActivity
             String mabh = cursor.getString(0);
             String tenbh = cursor.getString(1);
             String casi = cursor.getString(3);
+            String loiBH = cursor.getString(2);
             int yeuthich = cursor.getInt(5);
 
             Music music = new Music();
             music.setMa(mabh);
             music.setTen(tenbh);
             music.setCaSi(casi);
+            music.setLoiBH(loiBH);
             music.setThich(yeuthich == 1);
             arrMusic.add(music);
         }
@@ -425,12 +378,14 @@ public class DrawerActivity extends AppCompatActivity
             String mabh = cursor.getString(0);
             String tenbh = cursor.getString(1);
             String casi = cursor.getString(3);
+            String loiBH = cursor.getString(2);
             int yeuthich = cursor.getInt(5);
 
             Music music = new Music();
             music.setMa(mabh);
             music.setTen(tenbh);
             music.setCaSi(casi);
+            music.setLoiBH(loiBH);
             music.setThich(yeuthich == 1);
             arrFovarite.add(music);
         }
@@ -464,14 +419,14 @@ public class DrawerActivity extends AppCompatActivity
 
         lvMusic = (ListView) findViewById(R.id.lvMusic);
         arrMusic = new ArrayList<Music>();
-        adapterMusic = new MusicAdapter(DrawerActivity.this, R.layout.item, arrMusic);
+        adapterMusic = new MusicAdapter(KaraokeActivity.this, R.layout.item, arrMusic);
         lvMusic.setAdapter(adapterMusic);
 
         //lvMusic.setTextFilterEnabled(true);
 
         lvFovarite = (ListView) findViewById(R.id.lvFavorite);
         arrFovarite = new ArrayList<Music>();
-        adapterFovarite = new MusicAdapter(DrawerActivity.this, R.layout.item, arrFovarite);
+        adapterFovarite = new MusicAdapter(KaraokeActivity.this, R.layout.item, arrFovarite);
         lvFovarite.setAdapter(adapterFovarite);
 
         lvSing = (ListView) findViewById(R.id.lvSing);
@@ -482,6 +437,7 @@ public class DrawerActivity extends AppCompatActivity
         it_search = (LinearLayout) findViewById(R.id.it_search);
         btnSearch = (ImageButton) findViewById(R.id.btnSearch);
         edtSearch = (EditText) findViewById(R.id.edtSearch);
+        txtSoDT = findViewById(R.id.txtSoDT);
 
     }
 
@@ -555,7 +511,7 @@ public class DrawerActivity extends AppCompatActivity
             cursorTim.close();
             adapterMusic.notifyDataSetChanged();
         } else
-            Toast.makeText(DrawerActivity.this, R.string.note_null, Toast.LENGTH_LONG).show();
+            Toast.makeText(KaraokeActivity.this, R.string.note_null, Toast.LENGTH_LONG).show();
     }
 
     public String timBaiHatTheoTen(String ten) {
@@ -589,7 +545,7 @@ public class DrawerActivity extends AppCompatActivity
             }
             cursorTimTen.close();
         } else
-            Toast.makeText(DrawerActivity.this, R.string.note_null, Toast.LENGTH_LONG).show();
+            Toast.makeText(KaraokeActivity.this, R.string.note_null, Toast.LENGTH_LONG).show();
         return mabh;
     }
 

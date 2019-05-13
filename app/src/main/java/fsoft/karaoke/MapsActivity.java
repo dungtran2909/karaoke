@@ -110,8 +110,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
 //        getNearbyPlacesData.execute(DataTransfer);
 
-        Button btnRestaurant = (Button) findViewById(R.id.btnRestaurant);
-        btnRestaurant.setOnClickListener(new View.OnClickListener() {
+        Button btnKaraoke = (Button) findViewById(R.id.btnKaraoke);
+        btnKaraoke.setOnClickListener(new View.OnClickListener() {
             String Karaoke = "karaoke";
 
             @Override

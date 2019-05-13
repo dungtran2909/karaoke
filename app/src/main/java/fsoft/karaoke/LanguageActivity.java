@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 import java.util.Locale;
@@ -27,7 +26,7 @@ public class LanguageActivity extends AppCompatActivity {
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
-        Intent intent = new Intent(LanguageActivity.this,DrawerActivity.class);
+        Intent intent = new Intent(LanguageActivity.this, KaraokeActivity.class);
         startActivity(intent);
 
     }

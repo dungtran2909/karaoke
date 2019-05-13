@@ -8,18 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import fsoft.karaoke.DrawerActivity;
-import fsoft.karaoke.InfoUserActivity;
-import fsoft.karaoke.MainActivity;
+import fsoft.karaoke.KaraokeActivity;
 import fsoft.karaoke.R;
 import fsoft.model.Music;
 
@@ -49,7 +44,8 @@ public class MusicAdapter extends ArrayAdapter<Music> {
         TextView txtTen = convertView.findViewById(R.id.txtTen);
         TextView txtMa = convertView.findViewById(R.id.txtMa);
         TextView txtCaSi = convertView.findViewById(R.id.txtCaSi);
-        final ImageButton btnLike = convertView.findViewById(R.id.btnLike);
+        TextView txtLoi = convertView.findViewById(R.id.txtLoi);
+        final ImageView btnLike = convertView.findViewById(R.id.btnLike);
 
         // Set gia tri cho Controls
         final Music music = objects.get(position);
@@ -57,13 +53,14 @@ public class MusicAdapter extends ArrayAdapter<Music> {
         txtTen.setText(music.getTen().toString());
         txtMa.setText(music.getMa().toString());
         txtCaSi.setText(music.getCaSi().toString());
+        txtLoi.setText(music.getLoiBH().toString());
 
         if(music.isThich())
         {
-            btnLike.setImageResource(R.drawable.ic_favorite_black_24dp);
+            btnLike.setImageResource(R.drawable.ic_favorite);
         }
         else
-            btnLike.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+            btnLike.setImageResource(R.drawable.ic_unfavorite);
 
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,20 +68,20 @@ public class MusicAdapter extends ArrayAdapter<Music> {
                 if(music.isThich())
                 {
                     objects.get(position).setThich(false);// huy bai hat thich
-                    btnLike.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                    btnLike.setImageResource(R.drawable.ic_unfavorite);
                     Toast.makeText(context, R.string.remove_list +objects.get(position).getTen(), Toast.LENGTH_SHORT).show();
                     ContentValues row = new ContentValues();
                     row.put("YEUTHICH",0);
-                    DrawerActivity.database.update("ArirangSongList",row,"MABH=?", new String[]{music.getMa()});
+                    KaraokeActivity.database.update("ArirangSongList",row,"MABH=?", new String[]{music.getMa()});
                 }
                 else
                 {
                     objects.get(position).setThich(true); // thich bai hat
-                    btnLike.setImageResource(R.drawable.ic_favorite_black_24dp);
+                    btnLike.setImageResource(R.drawable.ic_favorite);
                     Toast.makeText(context, R.string.add_list +objects.get(position).getTen(), Toast.LENGTH_SHORT).show();
                     ContentValues row = new ContentValues();
                     row.put("YEUTHICH",1);
-                    DrawerActivity.database.update("ArirangSongList",row,"MABH=?", new String[]{music.getMa()});
+                    KaraokeActivity.database.update("ArirangSongList",row,"MABH=?", new String[]{music.getMa()});
                 }
             }
         });
